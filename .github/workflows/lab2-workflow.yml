@@ -11,6 +11,9 @@ on:
         description: "Enter a custom message"
         type: string
         required: true
+env:   # repository-level debug variable
+  ACTIONS_STEP_DEBUG: "true"
+  
 jobs:
   job2:
     runs-on: ubuntu-latest
@@ -19,7 +22,8 @@ jobs:
        run: echo "${{ github.event.inputs.custom_message }}"
      - name: Printing run-job boolean value
        if: ${{ github.event.inputs.run_job == true }} || inputs.run_job
-       run: echo "${{ github.event.inputs.custom_message }}"
+       run: echo "${{ toJson(inputs.run_job) }}"
+
 
 
 
